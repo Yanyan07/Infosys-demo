@@ -7,7 +7,7 @@ public class RegisterDTO {
     private String contactNumber;
     private String password;
     private String gender;
-    private LocalDate dateOfBirth;
+    private String role;
     private AddressDTO addressDTO;
 
     public String getCustomerName() {
@@ -50,12 +50,12 @@ public class RegisterDTO {
         this.gender = gender;
     }
 
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
+    public String getRole() {
+        return role;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public AddressDTO getAddressDTO() {

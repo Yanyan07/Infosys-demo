@@ -14,7 +14,7 @@ public class Customer {
     private String contactNumber;
     private String password;
     private String gender;
-    private LocalDate dateOfBirth;
+    private String role;
 
     @ManyToOne
     @JoinColumn(name = "address_id")
@@ -72,12 +72,12 @@ public class Customer {
         this.gender = gender;
     }
 
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
+    public String getRole() {
+        return role;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Address getAddress() {
@@ -96,28 +96,5 @@ public class Customer {
         this.primePlan = primePlan;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null || getClass() != o.getClass()) return false;
-        Customer customer = (Customer) o;
-        return Objects.equals(customerId, customer.customerId) && Objects.equals(customerName, customer.customerName) && Objects.equals(customerEmailId, customer.customerEmailId) && Objects.equals(contactNumber, customer.contactNumber) && Objects.equals(password, customer.password) && Objects.equals(gender, customer.gender) && Objects.equals(dateOfBirth, customer.dateOfBirth);
-    }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(customerId, customerName, customerEmailId, contactNumber, password, gender, dateOfBirth);
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "customerId=" + customerId +
-                ", customerName='" + customerName + '\'' +
-                ", customerEmailId='" + customerEmailId + '\'' +
-                ", contactNumber='" + contactNumber + '\'' +
-                ", password='" + password + '\'' +
-                ", gender='" + gender + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                '}';
-    }
 }
