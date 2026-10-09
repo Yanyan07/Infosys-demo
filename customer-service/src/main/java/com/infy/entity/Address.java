@@ -2,6 +2,7 @@ package com.infy.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -16,7 +17,7 @@ public class Address {
     private String zipcode;
 
     @OneToMany(mappedBy = "address")
-    private List<Customer> customers;
+    private List<Customer> customers = new ArrayList<>();
 
     public Integer getAddressId() {
         return addressId;

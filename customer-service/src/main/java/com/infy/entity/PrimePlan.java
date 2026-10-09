@@ -1,6 +1,8 @@
 package com.infy.entity;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,7 +15,7 @@ public class PrimePlan {
     private String planDescription;
 
     @OneToMany(mappedBy = "primePlan")
-    private List<Customer> customers;
+    private List<Customer> customers = new ArrayList<>();
 
     public Integer getPlanId() {
         return planId;
