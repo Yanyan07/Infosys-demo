@@ -7,7 +7,8 @@ public class CartDTO {
 
     private Integer cartId;
     private Integer customerId;
-    private List<CartItemDTO> items = new ArrayList<>();
+    private List<CartItemResponseDTO> items = new ArrayList<>();
+    private Double totalAmount;
 
     public Integer getCartId() {
         return cartId;
@@ -25,11 +26,19 @@ public class CartDTO {
         this.customerId = customerId;
     }
 
-    public List<CartItemDTO> getItems() {
+    public List<CartItemResponseDTO> getItems() {
         return items;
     }
 
-    public void setItems(List<CartItemDTO> items) {
+    public void setItems(List<CartItemResponseDTO> items) {
         this.items = items;
+    }
+
+    public Double getTotalAmount() {
+        return totalAmount;
+    }
+
+    public void setTotalAmount(Double totalAmount) {
+        this.totalAmount = totalAmount;
     }
 }
