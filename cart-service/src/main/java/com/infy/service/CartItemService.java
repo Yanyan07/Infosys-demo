@@ -4,7 +4,7 @@ import com.infy.dto.CartItemDTO;
 import com.infy.entity.CartItem;
 
 public interface CartItemService {
-    CartItem addItemToCart(CartItemDTO dto);
+    String addItemToCart(CartItemDTO dto);
 
     //addMidicineToCart
     //getMedicineFromCart

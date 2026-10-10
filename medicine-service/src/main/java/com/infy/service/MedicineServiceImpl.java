@@ -66,6 +66,7 @@ public class MedicineServiceImpl implements MedicineService{
         dto.setDiscountPercent(medicine.getDiscountPercent());
         dto.setManufacturingDate(medicine.getManufacturingDate());
         dto.setExpiryDate(medicine.getExpiryDate());
+        dto.setQuantity(medicine.getQuantity());
 
         return dto;
     }

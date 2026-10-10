@@ -13,7 +13,6 @@ public class CartItem {
     private Double unitPrice;
     @ManyToOne
     @JoinColumn(name= "cart_id")
-    @JsonIgnore
     private Cart cart;
 
     public Integer getCartItemId() {

@@ -9,6 +9,8 @@ import com.infy.repository.AddressRepository;
 import com.infy.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.Optional;
 
 @Service
@@ -20,6 +22,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 
     @Override
+    @Transactional
     public String register(RegisterDTO registerDTO) {
         if(registerDTO == null) {
             throw new IllegalArgumentException("Invalid registration input");
