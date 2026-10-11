@@ -1,10 +1,21 @@
 package com.infy.dto;
-import java.time.LocalDate;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 public class RegisterDTO {
+    @NotBlank(message = "Name is required")
     private String customerName;
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email format")
+    @Pattern(
+            regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$",
+            message = "Invalid email format"
+    )
     private String customerEmailId;
     private String contactNumber;
+    @NotBlank(message = "Password is required")
     private String password;
     private String gender;
     private String role;

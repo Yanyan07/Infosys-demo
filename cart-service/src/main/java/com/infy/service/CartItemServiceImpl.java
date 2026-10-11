@@ -13,6 +13,7 @@ import com.infy.repository.CartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
@@ -86,12 +87,17 @@ public class CartItemServiceImpl implements CartItemService{
         Cart cart = cartRepository.findById(dto.getCartId())
                 .orElseThrow(() ->
                         new NotFoundException("Cart not found!"));
-        MedicineDTO medicineDTO = restTemplate.getForObject(
-                "http://localhost:8082/medicine/" + dto.getMedicineId(),
-                MedicineDTO.class
-        );
-        if(medicineDTO == null) {
-            throw new NotFoundException("Medicine not found!");
+        MedicineDTO medicineDTO;
+
+        try {
+            medicineDTO = restTemplate.getForObject(
+                    "http://localhost:8082/medicine/" + dto.getMedicineId(),
+                    MedicineDTO.class
+            );
+        } catch (HttpClientErrorException.NotFound e) {
+            throw new NotFoundException(
+                    "Medicine with id: " + dto.getMedicineId() + " not found!"
+            );
         }
 
         //Find the existing cart item
@@ -122,10 +128,18 @@ public class CartItemServiceImpl implements CartItemService{
         List<CartItemResponseDTO> items = new ArrayList<>();
         double totalAmount = 0.0;
         for(CartItem cartItem : cart.getItems()) {
-            MedicineDTO medicineDTO = restTemplate.getForObject(
-                    "http://localhost:8082/medicine/" + cartItem.getMedicineId(),
-                    MedicineDTO.class
-            );
+            MedicineDTO medicineDTO;
+
+            try {
+                medicineDTO = restTemplate.getForObject(
+                        "http://localhost:8082/medicine/" + cartItem.getMedicineId(),
+                        MedicineDTO.class
+                );
+            } catch (HttpClientErrorException.NotFound e) {
+                throw new NotFoundException(
+                        "Medicine with id: " + cartItem.getMedicineId() + " not found!"
+                );
+            }
             CartItemResponseDTO dto = new CartItemResponseDTO();
             dto.setMedicineId(cartItem.getMedicineId());
             dto.setMedicineName(medicineDTO.getMedicineName());
