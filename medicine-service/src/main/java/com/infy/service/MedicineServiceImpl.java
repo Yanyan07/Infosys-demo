@@ -23,16 +23,7 @@ public class MedicineServiceImpl implements MedicineService{
         Page<Medicine> medicinePage = medicineRepository.findAll(pageable);
         List<MedicineDTO> medicineDTOList = new ArrayList<>();
         for(Medicine medicine : medicinePage.getContent()){
-            MedicineDTO dto = new MedicineDTO();
-            dto.setMedicineId(medicine.getMedicineId());
-            dto.setMedicineName(medicine.getMedicineName());
-            dto.setManufacturer(medicine.getManufacturer());
-            dto.setCategory(medicine.getCategory());
-            dto.setPrice(medicine.getPrice());
-            dto.setDiscountPercent(medicine.getDiscountPercent());
-            dto.setManufacturingDate(medicine.getManufacturingDate());
-            dto.setExpiryDate(medicine.getExpiryDate());
-            medicineDTOList.add(dto);
+            medicineDTOList.add(convertToDTO(medicine));
         }
         return medicineDTOList;
     }
